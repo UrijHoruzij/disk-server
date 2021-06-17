@@ -9,7 +9,7 @@ const multer  = require('multer')
 const upload = multer({
   limits: { fieldSize: 25 * 1024 * 1024 }
 })
-require("dotenv").config();
+const { PORT } = require("../config");
 
 const server = () => {
     const app = express();
@@ -58,8 +58,8 @@ const server = () => {
     app.delete('/removeShareLink', authMiddleware, fileController.removeShareLink)
     app.get('/file/:link', fileController.downloadFileShare)
     
-    app.listen(process.env.PORT, () => {
-        console.log(`The server is running: ${process.env.PORT} stream ${process.pid}`);
+    app.listen(PORT, () => {
+        console.log(`The server is running: ${PORT} stream ${process.pid}`);
     });
 };
 

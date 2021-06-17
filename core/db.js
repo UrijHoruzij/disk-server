@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
-require("dotenv").config();
+const { DB_HOST } = require("../config");
 
 const db = {};
 db.connect = async () => {
-  const connect = await mongoose.connect(process.env.DB_HOST, {
+  const connect = await mongoose.connect(DB_HOST, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,

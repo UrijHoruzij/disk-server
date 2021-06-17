@@ -3,7 +3,7 @@ const fs = require('fs')
 const UserModel = require('../models/User')
 const FileModel = require('../models/File')
 const { v4: uuidv4 } = require('uuid');
-require("dotenv").config();
+const { FILE_PATH } = require("../config");
 
 class File {
     async createDir(req, res) {
@@ -104,9 +104,9 @@ class File {
             })
             let path;
             if (parent) {
-                path = `${process.env.FILE_PATH}\\${user._id}\\${parent.path}\\${name}`
+                path = `${FILE_PATH}\\${user._id}\\${parent.path}\\${name}`
             } else {
-                path = `${process.env.FILE_PATH}\\${user._id}\\${name}`
+                path = `${FILE_PATH}\\${user._id}\\${name}`
             }
             if(file){
                 await fs.appendFileSync(path, chunk, 'base64')
